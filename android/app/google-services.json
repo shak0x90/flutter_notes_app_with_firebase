@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "366356390775",
+    "project_id": "mnotes-pro",
+    "storage_bucket": "mnotes-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366356390775:android:5a4be8a08127e7dbeff772",
+        "android_client_info": {
+          "package_name": "se.shak.mnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366356390775-7bq2hhlp3u25gd4jubs7kp46aeat1kgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWKeLRG4JqROHVj_qcQzGFViTgirHlxqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366356390775-7bq2hhlp3u25gd4jubs7kp46aeat1kgn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
