@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mnotes/view/RegisterView.dart';
+import 'package:mnotes/view/VerifyEmailView.dart';
+import 'package:mnotes/view/loginView.dart';
 
 import 'firebase_options.dart';
 
@@ -39,25 +41,53 @@ class HomePage extends StatelessWidget {
         ),
         body: Center(
           child: FutureBuilder(
-            future: Firebase.initializeApp(
-              options: DefaultFirebaseOptions.currentPlatform,
-            ),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.done:
-                  final user = FirebaseAuth.instance.currentUser;
-                  if (user!.emailVerified) {
-                    print("You are verified user");
-                  } else {
-                    print("You need to verify");
-                  }
-                  return const Text("Done");
+              future: Firebase.initializeApp(
+                options: DefaultFirebaseOptions.currentPlatform,
+              ),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.done:
+                    final user = FirebaseAuth.instance.currentUser;
+                    if (user?.emailVerified ?? false) {
+                      //print("You are verified user");
+                    } else {
+                      //print("You need to verify");
+                      return const VerifyEmailView();
+                    }
+                    return const Text("Done");
 
-                default:
-                  return const Text('lOADING');
-              }
-            },
-          ),
+                  default:
+                    return const Text('lOADING');
+                }
+              }),
         ));
+  }
+}
+
+class VerifyEmailView extends StatefulWidget {
+  const VerifyEmailView({super.key});
+
+  @override
+  State<VerifyEmailView> createState() => _VerifyEmailViewState();
+}
+
+class _VerifyEmailViewState extends State<VerifyEmailView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Verify Email"),
+      ),
+      body: Column(children: [
+        const Text("Please Verify Email"),
+        TextButton(
+          onPressed: () async {
+            final user = FirebaseAuth.instance.currentUser;
+            await user?.sendEmailVerification();
+          },
+          child: const Text("Send email Verification"),
+        ),
+      ]),
+    );
   }
 }
